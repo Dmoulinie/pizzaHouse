@@ -46,23 +46,38 @@
 	// Initialize scripts that require a loaded page
 	$window.on('load', function () {
 		// Page loader & Page transition
-		if (plugins.preloader.length && !isNoviBuilder) {
-			pageTransition({
-				page: $('.page'),
-				animDelay: 500,
-				animDuration: 500,
-				animIn: 'fadeIn',
-				animOut: 'fadeOut',
-				conditions: function (event, link) {
-					return !/(\#|callto:|tel:|mailto:|:\/\/)/.test(link) && !event.currentTarget.hasAttribute('data-lightgallery');
-				},
-				onReady: function () {
-					clearTimeout(loaderTimeoutId);
-					plugins.preloader.addClass('loaded');
-					windowReady = true;
-				}
-			});
-		}
+		pageTransition({
+			page: $('.page'),
+			animDelay: 500,
+			animDuration: 500,
+			animIn: 'fadeIn',
+			animOut: 'fadeOut',
+			conditions: function (event, link) {
+				return !/(\#|callto:|tel:|mailto:|:\/\/)/.test(link) && !event.currentTarget.hasAttribute('data-lightgallery');
+			},
+			onReady: function () {
+				clearTimeout(loaderTimeoutId);
+				plugins.preloader.addClass('loaded');
+				windowReady = true;
+			}
+		});
+		// if (plugins.preloader.length && !isNoviBuilder) {
+		// 	pageTransition({
+		// 		page: $('.page'),
+		// 		animDelay: 500,
+		// 		animDuration: 500,
+		// 		animIn: 'fadeIn',
+		// 		animOut: 'fadeOut',
+		// 		conditions: function (event, link) {
+		// 			return !/(\#|callto:|tel:|mailto:|:\/\/)/.test(link) && !event.currentTarget.hasAttribute('data-lightgallery');
+		// 		},
+		// 		onReady: function () {
+		// 			clearTimeout(loaderTimeoutId);
+		// 			plugins.preloader.addClass('loaded');
+		// 			windowReady = true;
+		// 		}
+		// 	});
+		// }
 
 		// Isotope
 		if (plugins.isotope.length) {
